@@ -27,7 +27,7 @@ alias v='nvim'
 alias v.='nvim .'
 alias vf='nvim $(f)'
 alias nvc='v ~/.dotfiles/nvim/.config/nvim/init.vim'
-alias dfp='(cd ~/.dotfiles; git add .; git commit -m "update dotfiles")'
+alias dfp='(cd ~/.dotfiles; git add .; git commit -m "update dotfiles"; echo "NICE")'
 #fzf aliases 
 alias f="fzf --preview 'bat --style=numbers --color=always {} | head -400'"
 #tmux aliases
