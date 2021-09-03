@@ -18,7 +18,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 " THEMES
 Plug 'gruvbox-community/gruvbox'
-Plug 'phanviet/vim-monokai-pro'
 
 Plug 'mbbill/undotree'
 "FZF
@@ -28,15 +27,11 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
-" Plug 'dense-analysis/ale' "haven't found how to use it well
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
 Plug 'AndrewRadev/linediff.vim'
-" Plug 'airblade/vim-rooter' "I AM TESTING THIS PLUGIN
-"Plug 'ryanoasis/vim-devicons' "always load this one last
 call plug#end()
-:cmap pi PlugInstall
 
 set pyxversion=3
 set pyx=3
@@ -72,7 +67,7 @@ set softtabstop=4            " number of spaces in tab when editing
 
 set wildmenu            " visual autocomplete for command menu
 set showmatch           " highlight matching [{()}]
-syntax on
+" syntax on
 "make side carrot indent right a way
 nnoremap < <<
 nnoremap > >>
@@ -81,8 +76,8 @@ nnoremap > >>
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
+" nnoremap <F2> :set invpaste paste?<CR>
+" set pastetoggle=<F2>
 set showmode
 
 "open splits below and right
@@ -102,8 +97,6 @@ if exists('+termguicolors')
 endif
 let g:gruvbox_invert_selection='0'
 set background=dark
-"colorscheme monokai
-" colorscheme monokai_pro
 
 "---------------------------------------   Vim fugitive ------------
 nmap <leader>gs :G<CR>
@@ -128,8 +121,6 @@ map <leader>B :bp<CR>
 
 
 filetype plugin indent on
-"show tabs with 4 spaces
-set tabstop=4
 "when indenting with '>', use 4 spaces width
 set shiftwidth=4
 "on pressing tab, insert 4 spaces
@@ -163,11 +154,6 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-
-""vimspector   DEBUGGER
-let g:vimspector_enable_mappings = 'HUMAN'
-set packpath+=$HOME/.vim/pack/vimspector/opt/vimspector
-packadd vimspector
 
 "coc commands
 
@@ -204,7 +190,6 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
 
 "Vim-doge
 let g:doge_doc_standard_python = 'google'

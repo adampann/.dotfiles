@@ -106,6 +106,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.zsh_aliases
+source ~/.zsh_aliases_work
 # remove username and hostname from prompt
 prompt_context() {}
 
