@@ -31,7 +31,13 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
 Plug 'AndrewRadev/linediff.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/playground'
+
 call plug#end()
+
+" trying to turn TS hightlighting on
+lua require'nvim-treesitter.configs'.setup { hightlight = {enable = true } }
 
 set pyxversion=3
 set pyx=3

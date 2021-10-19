@@ -76,6 +76,8 @@ plugins=(
     virtualenv
     tmux
     # vi-mode
+    docker
+    docker-compose
     )
 
 source $ZSH/oh-my-zsh.sh
