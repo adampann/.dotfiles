@@ -5,7 +5,6 @@ let mapleader = "\<Space>"
 
 "plug installation --------------------------------------
 call plug#begin('~/.vim/plugged')
-" Plug 'mhinz/vim-startify' "Cow start screen. Cool but not needed
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'scrooloose/nerdtree'
@@ -28,16 +27,17 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
-Plug 'AndrewRadev/linediff.vim'
+" Plugins I'm testing & don't know what they give me yet
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/playground'
 
+" I don't know if I'm using these
+Plug 'sheerun/vim-polyglot'
+" Plug 'AndrewRadev/linediff.vim'
+
 call plug#end()
 
-" trying to turn TS hightlighting on
-lua require'nvim-treesitter.configs'.setup { hightlight = {enable = true } }
 
 set pyxversion=3
 set pyx=3
@@ -82,9 +82,7 @@ nnoremap > >>
 nnoremap j gj
 nnoremap k gk
 
-" nnoremap <F2> :set invpaste paste?<CR>
-" set pastetoggle=<F2>
-set showmode
+set noshowmode
 
 "open splits below and right
 set splitbelow
@@ -94,6 +92,9 @@ set mouse=a
 
 "color theme
 syntax enable
+" trying to turn TS hightlighting on
+lua require'nvim-treesitter.configs'.setup { hightlight = {enable = true } }
+
 " from the primes init.vim
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
@@ -128,9 +129,9 @@ map <leader>B :bp<CR>
 
 filetype plugin indent on
 "when indenting with '>', use 4 spaces width
-set shiftwidth=4
+" set shiftwidth=4
 "on pressing tab, insert 4 spaces
-set expandtab
+" set expandtab
 
 "change how long vim waits to switch from insert to command
 "after hitting esc vim was taking 3ish sec to switch
@@ -141,7 +142,7 @@ if executable('rg')
 endif
 
 "FZF commands
-"-----------------------------------------------------------------------------
+"----------------------------------------------------------------------------
 nnoremap <C-p> :Files<Cr>
 nnoremap <silent> <leader>a :Buffers<CR>
 nnoremap <silent> <leader>A :BLines<CR>
@@ -200,3 +201,5 @@ endfunction
 "Vim-doge
 let g:doge_doc_standard_python = 'google'
 
+" coc-clangd
+nnoremap <silent> <A-o> :CocCommand clangd.switchSourceHeader<cr>
