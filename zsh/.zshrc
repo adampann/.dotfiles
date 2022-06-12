@@ -107,8 +107,17 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.zsh_aliases
+if [ -f ~/.zsh_aliases ]; then
+    source ~/.zsh_aliases
+else
+    print "404: ~/.zsh_aliases not found."
+fi
+
+# Used for work specific alias. I don't really use this
 source ~/.zsh_aliases_work
+if [ -f ~/.zsh_aliases_work ]; then
+    source ~/.zsh_aliases_work
+fi
 # remove username and hostname from prompt
 prompt_context() {}
 
