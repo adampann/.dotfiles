@@ -144,3 +144,5 @@ fpath=(~/.zsh.d/ $fpath)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+export PATH="/home/parallels/.protoc/bin:/home/parallels/.protoc/include:$PATH"
