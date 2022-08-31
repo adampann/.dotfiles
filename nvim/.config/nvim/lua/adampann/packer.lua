@@ -18,6 +18,12 @@ return require('packer').startup(function(use)
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim"
   }
+  use "jose-elias-alvarez/null-ls.nvim"
+
+  -- DAP
+  use 'mfussenegger/nvim-dap'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use 'theHamsta/nvim-dap-virtual-text'
 
   -- Configurations for Nvim LSP
   use 'neovim/nvim-lspconfig'
@@ -29,6 +35,18 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
 
+  -- Snippets (used by LuaSnip)
+  use 'rafamadriz/friendly-snippets'
+
+  -- Status Line
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+  use {
+    'kdheepak/tabline.nvim',
+    requires = { { 'hoob3rt/lualine.nvim', opt=true }, {'kyazdani42/nvim-web-devicons', opt = true} }
+  }
 
   -- still need to find a better solution
   use 'sheerun/vim-polyglot'
@@ -38,10 +56,12 @@ return require('packer').startup(function(use)
       'nvim-telescope/telescope.nvim', tag = '0.1.0',
       requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use 'kyazdani42/nvim-web-devicons'
 
   -- color
   use 'tanvirtin/monokai.nvim'
+  -- use 'folke/tokyonight.nvim'
 
   -- all hail all that is tpope
   use 'tpope/vim-surround'
@@ -66,8 +86,8 @@ return require('packer').startup(function(use)
 
   -- Treesitter
   use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
+    'nvim-treesitter/nvim-treesitter',
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
   use 'nvim-treesitter/playground'
 

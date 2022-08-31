@@ -10,20 +10,24 @@ vim.keymap.set('n', '<space>dp', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', '<space>dl', "<cmd>Telescope diagnostics<cr>", opts)
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts) -- Not using becasue <space>q is already used to quit nvim
 
+local get_bufopts = function(bufnr, desc)
+  return { noremap=true, silent=true, buffer=bufnr, desc=desc}
+end
+
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  local bufopts = { noremap=true, silent=true, buffer=bufnr, desc=''}
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, get_bufopts(bufnr, "vim.lsp.buf.hover"))
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, get_bufopts(bufnr, "vim.lsp.buf.declaration"))
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, get_bufopts(bufnr, "vim.lsp.buf.definition"))
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, get_bufopts(bufnr, "vim.lsp.buf.type_definition"))
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, get_bufopts(bufnr, "vim.lsp.buf.implementation"))
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, get_bufopts(bufnr, "vim.lsp.buf.references"))
+  vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, get_bufopts(bufnr, "vim.lsp.buf.signature_help"))
   -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wl', function()
