@@ -44,3 +44,19 @@ nmap( "<Leader>nf", ":NERDTreeFind<CR>", {})
 
 -- null-ls
 nmap( "<leader>fm", ":lua vim.lsp.format()", {})
+
+
+-- dap
+nmap( "<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", {})
+nmap( "<Leader>B", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", {})
+nmap( "<leader>lp", "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", {})
+nmap( "<Leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>", {})
+nmap( "<Leader>dl", "<Cmd>lua require'dap'.run_last()<CR>", {})
+nmap( "<F5>", "<Cmd>lua require'dap'.continue()<CR>", {})
+nmap( "<F1>", "<Cmd>lua require'dap'.step_over()<CR>", {})
+nmap( "<F2>", "<Cmd>lua require'dap'.step_into()<CR>", {})
+nmap( "<F3>", "<Cmd>lua require'dap'.step_out()<CR>", {})
+-- dap - python
+nmap( "<leader>dm", ":lua require('dap-python').test_method()<CR>", {})
+nmap( "<leader>dc", ":lua require('dap-python').test_class()<CR>", {})
+nmap( "<leader>ds", "<ESC>:lua require('dap-python').debug_selection()<CR>", {})
