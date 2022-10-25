@@ -23,7 +23,7 @@ nmap( ']q', ':cnext<CR>', { }) -- Taken from tpope/vim-unimpaired
 nmap( "<leader>u", ":UndotreeShow<CR>", {})
 
 -- telescope
-nmap( "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>" )
+nmap( "<leader>ff", "<cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>" )
 nmap( "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>" )
 nmap( "<leader>fw", "<cmd>lua require('telescope.builtin').grep_string()<cr>" )
 nmap( "<leader>fl", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({sorting_strategy=\"ascending\", layout_config={prompt_position=\"top\"}})<cr>" )
