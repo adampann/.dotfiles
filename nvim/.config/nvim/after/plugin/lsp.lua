@@ -2,7 +2,7 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', '<space>dn', vim.diagnostic.goto_next, opts)
@@ -11,7 +11,7 @@ vim.keymap.set('n', '<space>dl', "<cmd>Telescope diagnostics<cr>", opts)
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts) -- Not using becasue <space>q is already used to quit nvim
 
 local get_bufopts = function(bufnr, desc)
-  return { noremap=true, silent=true, buffer=bufnr, desc=desc}
+  return { noremap = true, silent = true, buffer = bufnr, desc = desc }
 end
 
 local on_attach = function(client, bufnr)
@@ -20,7 +20,7 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr, desc=''}
+  local bufopts = { noremap = true, silent = true, buffer = bufnr, desc = '' }
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, get_bufopts(bufnr, "vim.lsp.buf.hover"))
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, get_bufopts(bufnr, "vim.lsp.buf.declaration"))
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, get_bufopts(bufnr, "vim.lsp.buf.definition"))
@@ -35,32 +35,34 @@ local on_attach = function(client, bufnr)
   -- end, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<space>fo', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>fo', function()
+    vim.lsp.buf.format { async = true }
+  end, bufopts)
 end
 
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
-require('lspconfig')['pyright'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
+require('lspconfig')['pyright'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
 }
-require('lspconfig')['tsserver'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
+require('lspconfig')['tsserver'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
 }
-require('lspconfig')['sumneko_lua'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-    settings = {
+require('lspconfig')['lua_ls'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+  settings = {
     Lua = {
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -73,3 +75,8 @@ require('lspconfig')['sumneko_lua'].setup{
     },
   },
 }
+-- require('lspconfig')['clangd'].setup{
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+--     capabilities = capabilities,
+-- }

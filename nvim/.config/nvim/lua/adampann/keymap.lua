@@ -56,6 +56,10 @@ nmap( "<F5>", "<Cmd>lua require'dap'.continue()<CR>", {})
 nmap( "<F1>", "<Cmd>lua require'dap'.step_over()<CR>", {})
 nmap( "<F2>", "<Cmd>lua require'dap'.step_into()<CR>", {})
 nmap( "<F3>", "<Cmd>lua require'dap'.step_out()<CR>", {})
+
+-- dap telescope
+nmap( "<leader>db", "<Cmd>Telescope dap list_breakpoints<CR>", {})
+
 -- dap - python
 nmap( "<leader>dm", ":lua require('dap-python').test_method()<CR>", {})
 nmap( "<leader>dc", ":lua require('dap-python').test_class()<CR>", {})

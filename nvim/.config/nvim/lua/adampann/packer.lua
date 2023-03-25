@@ -25,6 +25,11 @@ return require('packer').startup(function(use)
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use 'theHamsta/nvim-dap-virtual-text'
   use 'mfussenegger/nvim-dap-python'
+  -- was trying to use lua-json5 to be able to use the same debugger files as vscode
+  -- use {
+  --   'Joakker/lua-json5',
+  --   -- run = './install.sh'
+  -- }
 
   -- Configurations for Nvim LSP
   use 'neovim/nvim-lspconfig'
@@ -59,9 +64,11 @@ return require('packer').startup(function(use)
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'kyazdani42/nvim-web-devicons'
+  use 'nvim-telescope/telescope-dap.nvim'
 
   -- color
-  use 'tanvirtin/monokai.nvim'
+  use { "ellisonleao/gruvbox.nvim" }
+  -- use 'tanvirtin/monokai.nvim'
   -- use 'folke/tokyonight.nvim'
 
   -- all hail all that is tpope
