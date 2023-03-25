@@ -75,6 +75,15 @@ require('lspconfig')['lua_ls'].setup {
     },
   },
 }
+require'lspconfig'.rust_analyzer.setup{
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false;
+      }
+    }
+  }
+}
 -- require('lspconfig')['clangd'].setup{
 --     on_attach = on_attach,
 --     flags = lsp_flags,
