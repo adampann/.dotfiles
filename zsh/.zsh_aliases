@@ -15,6 +15,7 @@ alias gb="git branch"
 alias ga='git add'
 alias gA='git add -A'
 alias gcf='gc $(gb | fzf)'
+alias gcf='gc $(git branch --sort=-committerdate | tr -d " *" | fzf --preview="git log {} | bat --color=always --style=numbers --line-range=:500")'
 alias gp='git pull'
 #git log options
 alias hlog='git log --all --graph --format="%C(yellow)%h %C(reset)%an %C(blue)%ar %C(red)%d %C(reset)%s"'
@@ -26,6 +27,7 @@ alias vim='nvim'
 alias v='nvim'
 alias v.='nvim .'
 alias vf='nvim $(f)'
+alias vfd='nvim $(find . -type d -print | fzf --preview "tree -a -C -L 1 {}")'
 alias nvc='v ~/.dotfiles/nvim/.config/nvim/'
 alias dfp='(cd ~/.dotfiles; git add .; git commit -m "update dotfiles"; echo "NICE")'
 #fzf aliases 
