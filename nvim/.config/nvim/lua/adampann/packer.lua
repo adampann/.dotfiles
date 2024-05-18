@@ -1,5 +1,3 @@
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
@@ -25,11 +23,14 @@ return require('packer').startup(function(use)
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use 'theHamsta/nvim-dap-virtual-text'
   use 'mfussenegger/nvim-dap-python'
-  -- was trying to use lua-json5 to be able to use the same debugger files as vscode
-  -- use {
-  --   'Joakker/lua-json5',
-  --   -- run = './install.sh'
-  -- }
+  -- DAP js debugging
+  use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} } -- testing
+  use {
+    "microsoft/vscode-js-debug",
+    opt = true,
+    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+  }
+  use 'David-Kunz/jester' -- used to start jest tests -- testing
 
   -- Configurations for Nvim LSP
   use 'neovim/nvim-lspconfig'
@@ -40,6 +41,12 @@ return require('packer').startup(function(use)
   use 'hrsh7th/nvim-cmp'
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
+  use "ray-x/lsp_signature.nvim" -- Testing
+
+  -- LSP - Rust
+  use 'mrcjkb/rustaceanvim' -- testing
+
+  use 'folke/neodev.nvim' -- TODO not sure if this is actually setup
 
   -- Snippets (used by LuaSnip)
   use 'rafamadriz/friendly-snippets'
@@ -59,10 +66,15 @@ return require('packer').startup(function(use)
 
   -- fuzzy file finder
   use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.0',
-      requires = { {'nvim-lua/plenary.nvim'} }
-  }
+  'nvim-telescope/telescope.nvim', tag = '0.1.4',
+  requires = { {'nvim-lua/plenary.nvim'} }
+}
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    requires = { {"nvim-lua/plenary.nvim"} }
+  }
   use 'kyazdani42/nvim-web-devicons'
   use 'nvim-telescope/telescope-dap.nvim'
 
@@ -78,7 +90,8 @@ return require('packer').startup(function(use)
   use 'tpope/vim-repeat'
 
   -- Git
-  use 'airblade/vim-gitgutter'
+  -- use 'airblade/vim-gitgutter'
+  use 'lewis6991/gitsigns.nvim'
 
   -- Nerdtree
   use 'scrooloose/nerdtree'
@@ -98,6 +111,7 @@ return require('packer').startup(function(use)
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
   use 'nvim-treesitter/playground'
+  use 'prisma/vim-prisma' -- Adding prisma file detection
 
   -- Markdown
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
@@ -105,4 +119,6 @@ return require('packer').startup(function(use)
   -- tmux resurect
   use 'tpope/vim-obsession'
 
+  -- Fidget
+  use { 'j-hui/fidget.nvim' }
 end)

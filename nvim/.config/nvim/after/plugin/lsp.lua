@@ -1,3 +1,6 @@
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup({})
+
 -- defines what capabilities our lsp client (neovim) has
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Mappings.
@@ -17,6 +20,9 @@ end
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  local signature_setup = {}
+  require "lsp_signature".on_attach(signature_setup, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -54,6 +60,17 @@ require('lspconfig')['tsserver'].setup {
   flags = lsp_flags,
   capabilities = capabilities,
 }
+require('lspconfig')['prismals'].setup {
+    -- on_attach = on_attach,
+    -- flags = lsp_flags,
+    -- capabilities = capabilities,
+    -- cmd = {"npx", },
+}
+-- require('lspconfig')['prismals'].setup {
+--   on_attach = on_attach,
+--   flags = lsp_flags,
+--   capabilities = capabilities,
+-- }
 require('lspconfig')['lua_ls'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
@@ -75,15 +92,27 @@ require('lspconfig')['lua_ls'].setup {
     },
   },
 }
-require'lspconfig'.rust_analyzer.setup{
-  settings = {
-    ['rust-analyzer'] = {
-      diagnostics = {
-        enable = false;
-      }
-    }
-  }
+
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {
+  },
+  -- LSP configuration
+  server = {
+    on_attach = on_attach,
+  },
 }
+-- require'lspconfig'.rust_analyzer.setup{
+--   on_attach = on_attach,
+--   settings = {
+--     ['rust-analyzer'] = {
+--       diagnostics = {
+--         enable = false;
+--       }
+--     }
+--   }
+-- }
+
 -- require('lspconfig')['clangd'].setup{
 --     on_attach = on_attach,
 --     flags = lsp_flags,

@@ -19,8 +19,21 @@ nmap( '<Leader>,', ':nohlsearch<CR>', { })
 nmap( '[q', ':cprevious<CR>', { }) -- Taken from tpope/vim-unimpaired
 nmap( ']q', ':cnext<CR>', { }) -- Taken from tpope/vim-unimpaired
 
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- better indenting
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set("n", "<M-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+vim.keymap.set("n", "<M-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<M-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<M-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
 -- Undo
-nmap( "<leader>u", ":UndotreeShow<CR>", {})
+nmap( "<leader>u", ":UndotreeToggle<CR>", {})
 
 -- telescope
 nmap( "<leader>ff", "<cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>" )
@@ -47,20 +60,29 @@ nmap( "<leader>fm", ":lua vim.lsp.format()", {})
 
 
 -- dap
-nmap( "<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", {})
-nmap( "<Leader>B", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", {})
-nmap( "<leader>lp", "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", {})
+nmap( "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", {})
+nmap( "<Leader>dB", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", {})
+nmap( "<leader>dlp", "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", {})
 nmap( "<Leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>", {})
 nmap( "<Leader>dl", "<Cmd>lua require'dap'.run_last()<CR>", {})
-nmap( "<F5>", "<Cmd>lua require'dap'.continue()<CR>", {})
-nmap( "<F1>", "<Cmd>lua require'dap'.step_over()<CR>", {})
-nmap( "<F2>", "<Cmd>lua require'dap'.step_into()<CR>", {})
-nmap( "<F3>", "<Cmd>lua require'dap'.step_out()<CR>", {})
+nmap( "<leader>dc", "<Cmd>lua require'dap'.continue()<CR>", {})
+nmap( "<leader>dso", "<Cmd>lua require'dap'.step_over()<CR>", {})
+nmap( "<leader>dsi", "<Cmd>lua require'dap'.step_into()<CR>", {})
+nmap( "<leader>dsO", "<Cmd>lua require'dap'.step_out()<CR>", {})
 
 -- dap telescope
-nmap( "<leader>db", "<Cmd>Telescope dap list_breakpoints<CR>", {})
+nmap( "<leader>fdb", "<Cmd>Telescope dap list_breakpoints<CR>", {})
+
+-- jester
+vim.keymap.set("n", "<leader>rt", "<cmd>lua require'jester'.run()<CR>", { desc = "Run nearest test(s) under the cursor" })
+vim.keymap.set("n", "<leader>rf", "<cmd>lua require'jester'.run_file()<CR>", { desc = "Run current file" })
+vim.keymap.set("n", "<leader>rl", "<cmd>lua require'jester'.run_last()<CR>", { desc = "Run last test(s)" })
+
+
+vim.keymap.set("n", "<leader>dt", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle dap UI" })
+
 
 -- dap - python
-nmap( "<leader>dm", ":lua require('dap-python').test_method()<CR>", {})
-nmap( "<leader>dc", ":lua require('dap-python').test_class()<CR>", {})
-nmap( "<leader>ds", "<ESC>:lua require('dap-python').debug_selection()<CR>", {})
+-- nmap( "<leader>dm", ":lua require('dap-python').test_method()<CR>", {})
+-- nmap( "<leader>dc", ":lua require('dap-python').test_class()<CR>", {})
+-- nmap( "<leader>ds", "<ESC>:lua require('dap-python').debug_selection()<CR>", {})
