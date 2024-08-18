@@ -3,6 +3,12 @@
 require('telescope').setup {
   defaults = {
     previewer = true,
+    sorting_strategy = 'ascending',
+    layout_config = {
+      prompt_position = 'top',
+      height = 0.95,
+      width = 0.95,
+    }
   },
 
   extensions = {

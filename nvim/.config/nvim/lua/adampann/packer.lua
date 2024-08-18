@@ -21,6 +21,7 @@ return require('packer').startup(function(use)
   -- DAP
   use 'mfussenegger/nvim-dap'
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { "nvim-neotest/nvim-nio" }
   use 'theHamsta/nvim-dap-virtual-text'
   use 'mfussenegger/nvim-dap-python'
   -- DAP js debugging
@@ -121,4 +122,7 @@ return require('packer').startup(function(use)
 
   -- Fidget
   use { 'j-hui/fidget.nvim' }
+
+  -- Diagnostics
+  use { 'folke/trouble.nvim' }
 end)
