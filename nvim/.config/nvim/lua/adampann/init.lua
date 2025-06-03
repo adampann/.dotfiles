@@ -1,5 +1,0 @@
-require("adampann.set")
-require("adampann.packer")
-require("adampann.keymap")
-require("adampann.mason")
-require("adampann.colorscheme")
