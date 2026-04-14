@@ -26,8 +26,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts) -- Requires formatting capabilities from the LSP server
 
     -- Example: Keymapping for going to next/previous diagnostic
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
+    vim.keymap.set('n', '[d', vim.diagnostic.jump({count=1}), bufopts)
+    vim.keymap.set('n', ']d', vim.diagnostic.jump({count=-1}), bufopts)
     -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, bufopts)
 
     vim.keymap.set('n', "==", vim.lsp.buf.format, bufopts)
